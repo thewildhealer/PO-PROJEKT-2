@@ -6,9 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-/**
- * Created by thewildhealer on 08.05.2017.
- */
 public class mainWindow extends JFrame {
     private JButton button1;
     private JPanel panelMain;
@@ -25,12 +22,10 @@ public class mainWindow extends JFrame {
         gamePanel.setPreferredSize(gameDim);
         setResizable(false);
         pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Random generator = new Random();
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        button1.addActionListener(but -> {
                 /*
                 int x = (generator.nextInt(gamePanel.getWidth()/10) * rectSize);
                 int y = (generator.nextInt(gamePanel.getHeight()/10) * rectSize);
@@ -41,7 +36,6 @@ public class mainWindow extends JFrame {
                 g.drawRect(x, y, rectSize, rectSize);
                 g.dispose(); */
                 generateGrid();
-            }
         });
         setVisible(true);
     }
