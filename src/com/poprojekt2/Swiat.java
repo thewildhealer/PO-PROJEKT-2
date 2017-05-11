@@ -1,8 +1,5 @@
 package com.poprojekt2;
 
-/**
- * Created by thewildhealer on 11.05.2017.
- */
 public class Swiat {
     private int wysokosc, szerokosc;
 
