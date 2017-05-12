@@ -1,17 +1,15 @@
 package com.poprojekt2;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
-public class initWindow extends JFrame {
+public class InitWindow extends JFrame {
     private JButton button;
     private JPanel initPanel;
     private JTextField widthField;
     private JTextField heightField;
 
-    public initWindow(Swiat swiat) {
+    public InitWindow(Swiat swiat) {
         setContentPane(initPanel);
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -21,7 +19,7 @@ public class initWindow extends JFrame {
                 swiat.setSzerokosc(szerokosc);
                 swiat.setWysokosc(wysokosc);
                 dispose();
-                mainWindow w = new mainWindow(swiat);
+                MainWindow w = new MainWindow(swiat);
         });
         setVisible(true);
     }
