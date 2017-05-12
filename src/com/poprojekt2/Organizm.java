@@ -1,5 +1,6 @@
 package com.poprojekt2;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Random;
 abstract public class Organizm {
     protected int sila;
     protected int inicjatywa;
-    protected int x, y;
+    public int x, y;
     protected int prevX, prevY;
     protected Swiat swiat;
 
@@ -61,6 +62,7 @@ abstract public class Organizm {
     }
 
     public Organizm(Swiat swiat) {
+        this.swiat = swiat;
         do {
             Random generator = new Random();
             x = generator.nextInt() % swiat.getSzerokosc();
@@ -71,10 +73,16 @@ abstract public class Organizm {
     }
 
     public Organizm(int x, int y, Swiat swiat) {
+        this.x = x;
+        this.y = y;
+        this.swiat = swiat;
         if (swiat.getRysunek(x, y) == null)
             swiat.setRysunek(x, y, this);
     }
 
     abstract public void akcja();
+
+    abstract public Color getColor();
+
 
 }

@@ -90,7 +90,7 @@ public class Swiat {
     public void wykonajTure() {
 
         for (int i = 0; i < organizmy.size(); i++) {
-//            if (!breakFlag) organizmy.get(i).akcja();
+            if (!breakFlag) organizmy.get(i).akcja();
         }
         if (breakFlag) breakFlag = false;
 

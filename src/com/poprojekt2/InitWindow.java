@@ -1,6 +1,7 @@
 package com.poprojekt2;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class InitWindow extends JFrame {
@@ -14,13 +15,14 @@ public class InitWindow extends JFrame {
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         button.addActionListener(but -> {
-                int szerokosc = Integer.parseInt(widthField.getText());
-                int wysokosc = Integer.parseInt(heightField.getText());
-                swiat.setSzerokosc(szerokosc);
-                swiat.setWysokosc(wysokosc);
-                dispose();
-                MainWindow w = new MainWindow(swiat);
+            int szerokosc = Integer.parseInt(widthField.getText());
+            int wysokosc = Integer.parseInt(heightField.getText());
+            swiat.setSzerokosc(szerokosc);
+            swiat.setWysokosc(wysokosc);
+            dispose();
+            MainWindow w = new MainWindow(swiat);
         });
         setVisible(true);
     }
+
 }

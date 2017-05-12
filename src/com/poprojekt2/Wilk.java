@@ -1,5 +1,6 @@
 package com.poprojekt2;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -9,8 +10,13 @@ public class Wilk extends Organizm {
     public Wilk(Swiat swiat) {
         super(swiat);
     }
+
     public Wilk(int x, int y, Swiat swiat) {
-        super(x,y,swiat);
+        super(x, y, swiat);
+    }
+
+    public Color getColor() {
+        return Color.green;
     }
 
     public void akcja() {
@@ -35,7 +41,7 @@ public class Wilk extends Organizm {
             swiat.setRysunek(x, y, this);
             swiat.setRysunek(prevX, prevY, null);
         }
-       // else swiat.getRysunek(x, y)->kolizja(this);
+        // else swiat.getRysunek(x, y)->kolizja(this);
 
     }
 }
