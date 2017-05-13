@@ -2,10 +2,9 @@ package com.poprojekt2;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public class MainWindow extends JFrame implements ActionListener, KeyListener {
@@ -15,7 +14,7 @@ public class MainWindow extends JFrame implements ActionListener, KeyListener {
     private JTextArea comments;
     private JButton zapiszButton;
     private JButton wczytajButton;
-    private JComboBox comboBox1;
+    private JComboBox dodajOrganizmBox;
     private JTabbedPane tabbedPane1;
     private JTextPane legenda;
     private JButton calopalenieButton;
@@ -42,7 +41,7 @@ public class MainWindow extends JFrame implements ActionListener, KeyListener {
         comments.setFocusable(false);
         zapiszButton.setFocusable(false);
         wczytajButton.setFocusable(false);
-        comboBox1.setFocusable(false);
+        dodajOrganizmBox.setFocusable(false);
         tabbedPane1.setFocusable(false);
         legenda.setFocusable(false);
         calopalenieButton.setFocusable(false);
@@ -69,6 +68,30 @@ public class MainWindow extends JFrame implements ActionListener, KeyListener {
         wczytajButton.addActionListener(but4 -> {
             swiat.otworzSwiat();
             repaint();
+        });
+
+        gamePanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                int x = e.getX() / rectSize;
+                int y = e.getY() / rectSize;
+                if (swiat.getRysunek(x,y) == null) {
+                    String className = "com.poprojekt2." + dodajOrganizmBox.getSelectedItem().toString();
+                    try {
+                        Class<?> klasa = Class.forName(className);
+                        Constructor<?> ctor = klasa.getConstructor(int.class, int.class, Swiat.class);
+                        Object object = ctor.newInstance(x, y, swiat);
+
+                        swiat.dodajOrganizm((Organizm) object);
+
+                    } catch (InvocationTargetException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException | InstantiationException ex) {
+                        System.out.println("cos... cos sie popsulo i nie bylo mnie slychac...");
+                    }
+                }
+
+                repaint();
+            }
         });
 
         setVisible(true);

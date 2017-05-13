@@ -22,7 +22,7 @@
         </border>
         <children/>
       </grid>
-      <component id="1a143" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="1a143" class="javax.swing.JComboBox" binding="dodajOrganizmBox">
         <constraints>
           <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -36,8 +36,8 @@
             <item value="Trawa"/>
             <item value="Mlecz"/>
             <item value="Guarana"/>
-            <item value="Wilcze jagody"/>
-            <item value="Barszcz sosnowskiego"/>
+            <item value="WilczeJagody"/>
+            <item value="BarszczSosnowskiego"/>
           </model>
         </properties>
       </component>
