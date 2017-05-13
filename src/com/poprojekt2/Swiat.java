@@ -1,20 +1,18 @@
 package com.poprojekt2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Swiat {
     private int wysokosc, szerokosc;
     private boolean breakFlag;
     private ArrayList<Organizm> organizmy;
     private Organizm[] rysunek;
+    private Komentator komentator;
 
-
-    public Swiat() {
-        breakFlag = false;
-        inicjalizujRysunek();
-    }
 
     public Swiat(int x, int y) {
+        komentator = new Komentator();
         this.szerokosc = x;
         this.wysokosc = y;
         breakFlag = false;
@@ -25,43 +23,51 @@ public class Swiat {
         return wysokosc;
     }
 
-    public void setWysokosc(int w) {
-        this.wysokosc = w;
-    }
-
     public int getSzerokosc() {
         return szerokosc;
     }
 
-    public void setSzerokosc(int s) {
-        this.szerokosc = s;
+    public void setBreakFlag(boolean breakFlag) {
+        this.breakFlag = breakFlag;
     }
 
     public void dodajOrganizm(Organizm organizm) {
 
-        // TODO: naprawic sortowanie
-        organizmy.add(organizm); /*
+        organizmy.add(organizm);
         if (organizmy.size() > 1) {
             int i = organizmy.size() - 1;
-            while (organizmy.toArray()[i - 1].getInicjatywa() < organizmy.toArray()[i].getInicjatywa()) {
-  //              swap(organizmy[i - 1], organizmy[i]);
+            while (organizmy.get(i - 1).getInicjatywa() < organizmy.get(i).getInicjatywa()) {
+                Collections.swap(organizmy, i - 1, i);
                 if (i > 1) i--;
                 else break;
             }
         }
-        */
+
+    }
+
+    public ArrayList<String> komentuj() {
+        return komentator.komentujTure();
+    }
+
+    public void czyscKomentarze() {
+        komentator.wyczyscKomentarze();
     }
 
     public void umrzyj(Organizm napastnik, Organizm ofiara) {
-
+        komentator.komentujSmierc(napastnik, ofiara);
+        setRysunek(ofiara.getX(), ofiara.getY(), null);
+        setRysunek(napastnik.getX(), napastnik.getY(), napastnik);
+        //  organizmy.erase(std::remove(organizmy.begin(), organizmy.end(), ofiara), organizmy.end());
+        organizmy.remove(ofiara);
+        //       ofiara = null;
     }
 
     public void narodziny(Organizm org, int x, int y) {
-
+        komentator.komentujNarodziny(org, x, y);
     }
 
     public void nieudanyAtak(Organizm napastnik, Organizm ofiara) {
-
+        komentator.komentujNieudanyAtak(napastnik, ofiara);
     }
 
     public void umiejetnoscAktywowana(Organizm org, int czasTrwania) {
@@ -77,6 +83,10 @@ public class Swiat {
     }
 
     public void aktualizujRysunek() {
+        for (int i = 0; i < szerokosc * wysokosc; i++)
+            rysunek[i] = null;
+        for (Organizm org : organizmy)
+            setRysunek(org.getX(), org.getY(), org);
 
     }
 
@@ -93,15 +103,7 @@ public class Swiat {
             if (!breakFlag) organizmy.get(i).akcja();
         }
         if (breakFlag) breakFlag = false;
-
         aktualizujRysunek();
-    }
-
-    public void rysujSwiat() {
-        for (int i = 0; i < szerokosc * wysokosc; i++)
-            rysunek[i] = null;
-        for (Organizm org : organizmy)
-            setRysunek(org.getX(), org.getY(), org);
     }
 
     public void setRysunek(int x, int y, Organizm org) {
@@ -111,6 +113,5 @@ public class Swiat {
     Organizm getRysunek(int x, int y) {
         return rysunek[x + y * szerokosc];
     }
-
 
 }

@@ -12,61 +12,53 @@ abstract public class Organizm {
     public int x, y;
     protected int prevX, prevY;
     protected Swiat swiat;
+    boolean newBorn;
 
+    public boolean getNewBorn() { return newBorn; }
     public int getSila() {
         return sila;
     }
-
     public void setSila(int sila) {
         this.sila = sila;
     }
-
     public int getInicjatywa() {
         return inicjatywa;
     }
-
     public void setInicjatywa(int inicjatywa) {
         this.inicjatywa = inicjatywa;
     }
-
     public int getX() {
         return x;
     }
-
     public void setX(int x) {
         this.x = x;
     }
-
     public int getY() {
         return y;
     }
-
     public void setY(int y) {
         this.y = y;
     }
-
     public int getPrevX() {
         return prevX;
     }
-
     public void setPrevX(int prevX) {
         this.prevX = prevX;
     }
-
     public int getPrevY() {
         return prevY;
     }
-
     public void setPrevY(int prevY) {
         this.prevY = prevY;
     }
+    abstract String getNazwa();
 
     public Organizm(Swiat swiat) {
         this.swiat = swiat;
         do {
             Random generator = new Random();
-            x = generator.nextInt() % swiat.getSzerokosc();
-            y = generator.nextInt() % swiat.getWysokosc();
+            x = generator.nextInt(swiat.getSzerokosc());
+            y = generator.nextInt(swiat.getWysokosc());
         }
         while (swiat.getRysunek(x, y) != null);
         swiat.setRysunek(x, y, this);
@@ -81,6 +73,8 @@ abstract public class Organizm {
     }
 
     abstract public void akcja();
+
+    abstract public void kolizja(Organizm napastnik);
 
     abstract public Color getColor();
 
