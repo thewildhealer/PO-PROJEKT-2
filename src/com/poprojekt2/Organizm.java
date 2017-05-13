@@ -52,6 +52,7 @@ abstract public class Organizm {
         this.prevY = prevY;
     }
     abstract String getNazwa();
+    abstract public char getType();
 
     public Organizm(Swiat swiat) {
         this.swiat = swiat;

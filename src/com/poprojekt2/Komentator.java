@@ -45,7 +45,7 @@ private ArrayList<String> komentarze;
 
     public void komentujUmiejetnosc(Organizm org, int czasTrwania) {
         String pos = "[" + org.getX() + "," + org.getY() + "] ";
-        String komentarz = org.getNazwa() + " wlaczyl calopalenie! Bedzie trwac jeszcze przez " + (5 - czasTrwania) + " tury.";
+        String komentarz = org.getNazwa() + " wlaczyl calopalenie! Pozostalo: " + (5 - czasTrwania) + " tury.";
         komentarze.add(pos + komentarz);
     }
 

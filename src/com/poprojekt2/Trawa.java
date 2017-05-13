@@ -20,7 +20,7 @@ public class Trawa extends Roslina {
     }
 
     public void zasiej(int x, int y) {
-        if (!newBorn) swiat.dodajOrganizm(new Trawa(x, y, swiat));
+        if (!nowoZasiana) swiat.dodajOrganizm(new Trawa(x, y, swiat));
     }
 
     public String getNazwa() {

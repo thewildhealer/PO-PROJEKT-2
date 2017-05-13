@@ -10,8 +10,41 @@ public class Czlowiek extends Zwierze {
     private int cooldown;
     private int czasTrwania;
     private boolean umiejetnoscWlaczona;
+    private boolean flag;
 
-//    private void calopalenie();
+    private void calopalenie() {
+        swiat.umiejetnoscAktywowana(this, czasTrwania);
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++)
+                if (x + i >= 0 && y + j >= 0 && x + i <= swiat.getSzerokosc() - 1 && y + j <= swiat.getWysokosc() - 1 &&
+                        swiat.getRysunek(x + i, y + j) != null && swiat.getRysunek(x + i, y + j).getColor() != this.getColor()) {
+                    swiat.umrzyj(this, swiat.getRysunek(x + i, y + j));
+                }
+        }
+        swiat.setRysunek(x, y, this);
+        swiat.setRysunek(prevX, prevY, null);
+    }
+
+    public int getLicznik() {
+        return licznik;
+    }
+
+    public int getCzasTrwania() {
+        return czasTrwania;
+    }
+
+    public void setCzasTrwania(int czasTrwania) {
+        this.czasTrwania = czasTrwania;
+        if (czasTrwania != 0) {
+            umiejetnoscWlaczona = true;
+            this.licznik = 0;
+        } else umiejetnoscWlaczona = false;
+
+    }
+
+    public void setUmiejetnoscWlaczona() {
+        umiejetnoscWlaczona = true;
+    }
 
     public Czlowiek(Swiat swiat) {
         super(swiat);
@@ -66,21 +99,22 @@ public class Czlowiek extends Zwierze {
         while (x > swiat.getSzerokosc() - 1) x--;
     }
 
+    public void setFlag(boolean f) {
+        this.flag = true;
+    }
+
     public void akcja() {
-   //     swiat.aktualizujRysunek();
         if (czasTrwania >= 5) {
             czasTrwania = 0;
             umiejetnoscWlaczona = false;
         }
         if (!umiejetnoscWlaczona && cooldown > licznik) licznik++;
-/*
-        else if (zn1 == 'q' && licznik == 5) {
+
+        else if (flag && licznik == 5) {
             licznik = 0;
             umiejetnoscWlaczona = true;
+            flag = false;
         }
-        else if (zn1 == 'z') swiat.zapiszSwiat();
-        else if (zn1 == 'x') swiat.otworzSwiat();
-*/
 
         if (x == prevX && y == prevY) return;
         if (swiat.getRysunek(x, y) == null) {
@@ -88,10 +122,9 @@ public class Czlowiek extends Zwierze {
             swiat.setRysunek(prevX, prevY, null);
         }
         if (umiejetnoscWlaczona) {
-  //          calopalenie();
+            calopalenie();
             czasTrwania++;
-        }
-        else if (swiat.getRysunek(x, y) != this) swiat.getRysunek(x, y).kolizja(this);
+        } else if (swiat.getRysunek(x, y) != this) swiat.getRysunek(x, y).kolizja(this);
     }
 
     public void kolizja(Organizm napastnik) {

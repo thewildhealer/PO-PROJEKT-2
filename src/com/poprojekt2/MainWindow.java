@@ -7,10 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainWindow extends JFrame implements ActionListener, KeyListener {
-    private JButton button1;
+    private JButton nastepnaTuraButton;
     private JPanel panelMain;
     private JPanel gamePanel;
     private JTextArea comments;
@@ -19,6 +18,7 @@ public class MainWindow extends JFrame implements ActionListener, KeyListener {
     private JComboBox comboBox1;
     private JTabbedPane tabbedPane1;
     private JTextPane legenda;
+    private JButton calopalenieButton;
     private Swiat swiat;
     private int rectSize = 20;
     Timer t = new Timer(5, this);
@@ -27,26 +27,50 @@ public class MainWindow extends JFrame implements ActionListener, KeyListener {
         super("Konrad Zawora 165115");
         setContentPane(panelMain);
         this.swiat = swiat;
-        Dimension mainDim = new Dimension(swiat.getSzerokosc() * rectSize + 300, swiat.getWysokosc() * rectSize + 50);
+
+        Dimension mainDim = new Dimension(swiat.getSzerokosc() * rectSize + 500, swiat.getWysokosc() * rectSize + 50);
         Dimension gameDim = new Dimension(swiat.getSzerokosc() * rectSize, swiat.getWysokosc() * rectSize);
         panelMain.setPreferredSize(mainDim);
+
         gamePanel.setPreferredSize(gameDim);
         gamePanel.setMinimumSize(gameDim);
         gamePanel.setMaximumSize(gameDim);
-        //gamePanel.add(new GamePanel(swiat, rectSize) );
+
+        nastepnaTuraButton.setFocusable(false);
+        panelMain.setFocusable(false);
+        gamePanel.setFocusable(false);
+        comments.setFocusable(false);
+        zapiszButton.setFocusable(false);
+        wczytajButton.setFocusable(false);
+        comboBox1.setFocusable(false);
+        tabbedPane1.setFocusable(false);
+        legenda.setFocusable(false);
+        calopalenieButton.setFocusable(false);
 
         // setResizable(false);
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        Random generator = new Random();
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
 
-        button1.addActionListener(but -> {
+        nastepnaTuraButton.addActionListener(but1 -> {
             action();
         });
+        calopalenieButton.addActionListener(but2 -> {
+            swiat.setCzlowiekFlag(true);
+            action();
+        });
+        zapiszButton.addActionListener(but3 -> {
+            swiat.zapiszSwiat();
+        });
+
+        wczytajButton.addActionListener(but4 -> {
+            swiat.otworzSwiat();
+            repaint();
+        });
+
         setVisible(true);
     }
 
@@ -102,6 +126,7 @@ public class MainWindow extends JFrame implements ActionListener, KeyListener {
             }
         }
     }
+
     private void action() {
         swiat.wykonajTure();
         comment(swiat);

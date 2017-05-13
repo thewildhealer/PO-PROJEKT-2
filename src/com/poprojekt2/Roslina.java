@@ -8,7 +8,7 @@ import java.util.Random;
  * Created by thewildhealer on 12.05.2017.
  */
 abstract public class Roslina extends Organizm {
-    private boolean nowoZasiana;
+    protected boolean nowoZasiana;
 
     public Roslina(Swiat swiat) {
         super(swiat);
@@ -31,6 +31,9 @@ abstract public class Roslina extends Organizm {
     public Color getColor() {
         return Color.green;
     }
+    public char getType() {
+        return 'r';
+    };
 
     public void akcja() {
 

@@ -24,7 +24,9 @@ abstract public class Zwierze extends Organizm {
     //    swiat.setBreakFlag(true);
 
     }
-
+    public char getType() {
+        return 'z';
+    };
     public Color getColor() {
         return Color.green;
     }

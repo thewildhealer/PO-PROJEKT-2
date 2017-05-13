@@ -23,7 +23,7 @@ public class Mlecz extends Roslina {
     }
 
     public void zasiej(int x, int y) {
-        if (!newBorn) swiat.dodajOrganizm(new Mlecz(x, y, swiat));
+        if (!nowoZasiana) swiat.dodajOrganizm(new Mlecz(x, y, swiat));
     }
 
     public String getNazwa() {
