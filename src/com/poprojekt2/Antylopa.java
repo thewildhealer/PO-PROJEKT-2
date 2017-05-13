@@ -7,14 +7,11 @@ import java.util.Random;
  * Created by thewildhealer on 12.05.2017.
  */
 public class Antylopa extends Zwierze {
-    private boolean newBorn;
-
     public Antylopa(Swiat swiat) {
         super(swiat);
         sila = 4;
         inicjatywa = 4;
         mod = 2;
-        //    swiat.setBreakFlag(true);
     }
 
     public Antylopa(int x, int y, Swiat swiat) {
@@ -22,7 +19,6 @@ public class Antylopa extends Zwierze {
         sila = 4;
         inicjatywa = 4;
         mod = 2;
-        //    swiat.setBreakFlag(true);
     }
 
     public Color getColor() {
@@ -38,7 +34,7 @@ public class Antylopa extends Zwierze {
         } else super.kolizja(napastnik);
     }
 
-    void kopuluj(int x, int y) {
+    public void kopuluj(int x, int y) {
         if (!newBorn) swiat.dodajOrganizm(new Antylopa(x, y, swiat));
     }
 

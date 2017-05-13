@@ -2,10 +2,14 @@ package com.poprojekt2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements ActionListener, KeyListener {
     private JButton button1;
     private JPanel panelMain;
     private JPanel gamePanel;
@@ -17,6 +21,7 @@ public class MainWindow extends JFrame {
     private JTextPane legenda;
     private Swiat swiat;
     private int rectSize = 20;
+    Timer t = new Timer(5, this);
 
     public MainWindow(Swiat swiat) {
         super("Konrad Zawora 165115");
@@ -35,11 +40,12 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Random generator = new Random();
-        button1.addActionListener(but -> {
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
 
-            swiat.wykonajTure();
-            comment(swiat);
-            repaint();
+        button1.addActionListener(but -> {
+            action();
         });
         setVisible(true);
     }
@@ -96,6 +102,11 @@ public class MainWindow extends JFrame {
             }
         }
     }
+    private void action() {
+        swiat.wykonajTure();
+        comment(swiat);
+        repaint();
+    }
 
     @Override
     public void paint(Graphics g) {
@@ -105,4 +116,40 @@ public class MainWindow extends JFrame {
         generateGrid();
     }
 
+    public void actionPerformed(ActionEvent e) {
+    }
+
+    public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        switch (keyCode) {
+            case KeyEvent.VK_SPACE:
+                action();
+                break;
+            case KeyEvent.VK_ENTER:
+                action();
+                break;
+            case KeyEvent.VK_UP:
+                swiat.setCzlowiekDirection('w');
+                action();
+                break;
+            case KeyEvent.VK_DOWN:
+                swiat.setCzlowiekDirection('s');
+                action();
+                break;
+            case KeyEvent.VK_LEFT:
+                swiat.setCzlowiekDirection('a');
+                action();
+                break;
+            case KeyEvent.VK_RIGHT:
+                swiat.setCzlowiekDirection('d');
+                action();
+                break;
+        }
+    }
+
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
 }

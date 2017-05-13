@@ -7,7 +7,7 @@ import java.util.Random;
  * Created by thewildhealer on 12.05.2017.
  */
 abstract public class Zwierze extends Organizm {
-    private boolean newBorn;
+    protected boolean newBorn;
     protected int mod;
 
     public Zwierze(Swiat swiat) {
@@ -95,7 +95,7 @@ abstract public class Zwierze extends Organizm {
 
         }
     }
-    abstract void kopuluj(int x, int y);
+    abstract public void kopuluj(int x, int y);
 
     public String getNazwa() {
         return "Wilk";

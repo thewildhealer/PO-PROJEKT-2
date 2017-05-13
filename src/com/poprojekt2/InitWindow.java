@@ -19,14 +19,19 @@ public class InitWindow extends JFrame {
             dispose();
 
             Swiat swiat = new Swiat(szerokosc, wysokosc);
+
             for (int i = 0; i < 3; i++) {
+/*
                 swiat.dodajOrganizm(new Wilk(swiat));
                 swiat.dodajOrganizm(new Owca(swiat));
                 swiat.dodajOrganizm(new Zolw(swiat));
                 swiat.dodajOrganizm(new Antylopa(swiat));
                 swiat.dodajOrganizm(new Lis(swiat));
+ */
+                swiat.dodajOrganizm(new Trawa(swiat));
+                swiat.dodajOrganizm(new Mlecz(swiat));
             }
-
+            swiat.dodajOrganizm(new Czlowiek(swiat));
             MainWindow w = new MainWindow(swiat);
         });
         setVisible(true);

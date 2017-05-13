@@ -7,8 +7,6 @@ import java.util.Random;
  * Created by thewildhealer on 12.05.2017.
  */
 public class Zolw extends Zwierze {
-    private boolean newBorn;
-
     public Zolw(Swiat swiat) {
         super(swiat);
         sila = 2;
@@ -38,12 +36,11 @@ public class Zolw extends Zwierze {
             napastnik.setX(getPrevX());
             napastnik.setY(getPrevY());
             swiat.nieudanyAtak(napastnik, this);
-        }
-        else super.kolizja(napastnik);
+        } else super.kolizja(napastnik);
     }
 
 
-    void kopuluj(int x, int y) {
+    public void kopuluj(int x, int y) {
         if (!newBorn) swiat.dodajOrganizm(new Zolw(x, y, swiat));
     }
 

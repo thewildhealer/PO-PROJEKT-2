@@ -9,6 +9,7 @@ public class Swiat {
     private ArrayList<Organizm> organizmy;
     private Organizm[] rysunek;
     private Komentator komentator;
+    private Czlowiek czlowiek;
 
 
     public Swiat(int x, int y) {
@@ -70,8 +71,12 @@ public class Swiat {
         komentator.komentujNieudanyAtak(napastnik, ofiara);
     }
 
-    public void umiejetnoscAktywowana(Organizm org, int czasTrwania) {
+    public void nowaRoslina(Organizm org, int x, int y) {
+        komentator.komentujNowaRoslina(org, x, y);
+    }
 
+    public void umiejetnoscAktywowana(Organizm org, int czasTrwania) {
+        komentator.komentujUmiejetnosc(org, czasTrwania);
     }
 
     public void otworzSwiat() {
@@ -104,6 +109,14 @@ public class Swiat {
         }
         if (breakFlag) breakFlag = false;
         aktualizujRysunek();
+    }
+
+    public void setCzlowiek(Czlowiek czlowiek) {
+        this.czlowiek = czlowiek;
+    }
+
+    public void setCzlowiekDirection(char c) {
+        if (czlowiek != null) czlowiek.setDirection(c);
     }
 
     public void setRysunek(int x, int y, Organizm org) {

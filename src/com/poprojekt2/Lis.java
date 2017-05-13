@@ -7,20 +7,17 @@ import java.util.Random;
  * Created by thewildhealer on 12.05.2017.
  */
 public class Lis extends Zwierze {
-    private boolean newBorn;
 
     public Lis(Swiat swiat) {
         super(swiat);
         sila = 3;
         inicjatywa = 7;
-        //    swiat.setBreakFlag(true);
     }
 
     public Lis(int x, int y, Swiat swiat) {
         super(x, y, swiat);
         sila = 3;
         inicjatywa = 7;
-        //    swiat.setBreakFlag(true);
     }
 
     public Color getColor() {
@@ -48,10 +45,10 @@ public class Lis extends Zwierze {
                 while (x > swiat.getSzerokosc() - 1) x--;
             }
 
-            if (swiat.getRysunek(x, y) != null && swiat.getRysunek(x, y) != this && swiat.getRysunek(x, y).getSila() <= sila){
+            if (swiat.getRysunek(x, y) != null && swiat.getRysunek(x, y) != this && swiat.getRysunek(x, y).getSila() <= sila) {
                 test = false;
             }
-            if (swiat.getRysunek(x, y) != null && swiat.getRysunek(x, y) != this && swiat.getRysunek(x, y).getSila() > sila){
+            if (swiat.getRysunek(x, y) != null && swiat.getRysunek(x, y) != this && swiat.getRysunek(x, y).getSila() > sila) {
                 x = prevX;
                 y = prevY;
                 test = true;
@@ -74,7 +71,7 @@ public class Lis extends Zwierze {
         } else swiat.getRysunek(x, y).kolizja(this);
     }
 
-    void kopuluj(int x, int y) {
+    public void kopuluj(int x, int y) {
         if (!newBorn) swiat.dodajOrganizm(new Lis(x, y, swiat));
     }
 
